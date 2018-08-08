@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>form</title>
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+<body>
+<div class="main">
+
+    <ul id="errorSummery">
+    </ul>
+
+    <div class="sub">
+        <h1>Registration Form</h1>
+    </div>
+    <form>
+        <div class="form-row">
+            <div class="col">
+                <label>Name:</label>
+                <input type="text" class="form-control" value="" placeholder="Name" id="name">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label class="lbl" for="inputEmail4">Email</label>
+                <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+            </div>
+            <div class="form-group col-md-6">
+                <label class="lbl" for="inputPassword4">Password</label>
+                <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputAddress">Address</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+        </div>
+        <div class="form-group">
+            <label for="inputAddress2">Address 2</label>
+            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="inputCity">City</label>
+                <input type="text" class="form-control" id="inputCity" value="">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="inputCity">Mobile Number</label>
+                <input type="text" class="form-control" id="inputNumber" value="">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputState">State</label>
+                <select id="inputState" class="form-control">
+                    <option value="choose" disabled="disabled">Choose...</option>
+                    <option value="gujarat">Gujarat</option>
+                    <option value="maharashtra">Maharashtra</option>
+                    <option value="assam">Assam</option>
+                    <option value="bihar">Bihar</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="inputZip">Zip</label>
+                <input type="text" class="form-control" id="inputZip">
+            </div>
+        </div>
+
+        <button onclick="myfun()" type="button" class="btn btn-primary">Sign up</button>
+    </form>
+
+</div>
+
+
+<script>
+
+    var name, email, password, address, address2, city, state, zip, mobileno;
+
+
+    function myfun() {
+        name = (document.getElementById('name').value);
+        console.log(name);
+        email = (document.getElementById('inputEmail4').value);
+        console.log(email);
+        password = (document.getElementById('inputPassword4').value);
+        console.log(password);
+        address = (document.getElementById('inputAddress').value);
+        console.log(address);
+        address2 = (document.getElementById('inputAddress2').value);
+        console.log(address2);
+        city = (document.getElementById('inputCity').value);
+        console.log(city);
+        state = (document.getElementById('inputState').value);
+        console.log(state);
+        zip = (document.getElementById('inputZip').value);
+        console.log(zip);
+        mobileno = (document.getElementById('inputNumber').value);
+        console.log(mobileno);
+
+        // alert(address + address2);
+        dataValidate();
+    }
+
+    function dataValidate() {
+        var errorArray = [];
+
+
+        if (address === "") {
+            errorArray.push("please enter your address");
+        }
+        if (address2 === "") {
+
+            errorArray.push("please enter your address");
+        }
+
+        if (name === "") {
+            errorArray.push("please enter your name");
+            // document.getElementById("demo").innerHTML = array[0];
+        }
+        if (email === "") {
+
+            errorArray.push("please enter your email");
+        }
+        if (password === "") {
+
+            errorArray.push("please enter your password");
+        }
+        if (city === "") {
+            alert("fdsfsdfsd");
+            errorArray.push("please enter your city");
+        }
+        if (state === "") {
+            alert("sfdsadsa");
+            errorArray.push("please enter your state");
+        }
+        if (zip === "") {
+            alert("sdsd");
+            errorArray.push("please enter your zip");
+        }
+        if (mobileno === "") {
+
+            errorArray.push("please enter your mobileno");
+        }
+        else {
+            alert("sign up successfully......");
+        }
+
+        if (!email == "") {
+            vEmail();
+        }
+
+
+        if (password.length < 8) {
+            errorArray.push("please enter your password");
+
+        }
+
+        if (mobileno.length < 10) {
+
+            errorArray.push("please enter your valid mobile number");
+        }
+
+        var ulElement = document.getElementById('errorSummery');
+        var liElement = "";
+
+        for (var i = 0; i < errorArray.length; i++) {
+            liElement = liElement + "<li>" + errorArray[i] + "</li>";
+        }
+        ulElement.insertAdjacentHTML("beforeend", liElement);
+
+
+        console.log(errorArray);
+        document.getElementById("demo").innerHTML = errorArray;
+
+    }
+
+    function vEmail() {
+
+        var ptrn = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
+        if (ptrn.test(email)) {
+        }
+        else {
+            alert("please enter valid email address");
+        }
+
+
+    }
+</script>
+</body>
+</html>
